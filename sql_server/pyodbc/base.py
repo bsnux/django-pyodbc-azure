@@ -579,7 +579,10 @@ class CursorWrapper(object):
         return row
 
     def fetchmany(self, chunk):
-        return self.format_rows(self.cursor.fetchmany(chunk))
+        try:
+            return self.format_rows(self.cursor.fetchmany(chunk))
+        except:
+            return []
 
     def fetchall(self):
         return self.format_rows(self.cursor.fetchall())
